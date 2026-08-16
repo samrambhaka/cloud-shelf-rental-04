@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Loader2, Upload, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { uploadImage } from "@/lib/imageUpload";
+import { compressImage } from "@/lib/imageCompress";
 
 interface Props {
   label: string;
