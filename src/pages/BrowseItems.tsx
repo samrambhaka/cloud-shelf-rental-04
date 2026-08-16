@@ -222,7 +222,9 @@ const BrowseItems = () => {
               })}
             </div>
           )}
+          </div>
         </div>
+
       </main>
       <Footer />
     </div>
