@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Loader2, Upload, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { uploadImage } from "@/lib/imageUpload";
+import { compressImage } from "@/lib/imageCompress";
 
 interface Props {
   label: string;
@@ -22,21 +23,31 @@ const ImageUploadField = ({ label, value, onChange }: Props) => {
       toast({ title: "Please select an image file", variant: "destructive" });
       return;
     }
-    if (file.size > 5 * 1024 * 1024) {
-      toast({ title: "Image must be under 5MB", variant: "destructive" });
-      return;
-    }
     setUploading(true);
     try {
-      const { url, fellBack } = await uploadImage(file);
+      let toUpload = file;
+      if (file.size > 1024 * 1024) {
+        toast({ title: "Image over 1MB — compressing..." });
+        toUpload = await compressImage(file, 100 * 1024);
+      }
+      if (toUpload.size > 1024 * 1024) {
+        toast({ title: "Image is too large to compress", variant: "destructive" });
+        return;
+      }
+      const { url, fellBack } = await uploadImage(toUpload);
       onChange(url);
-      toast({ title: fellBack ? "Image uploaded (backup storage used)" : "Image uploaded" });
+      const kb = Math.round(toUpload.size / 1024);
+      toast({
+        title: fellBack ? "Image uploaded (backup storage used)" : "Image uploaded",
+        description: toUpload !== file ? `Compressed to ${kb} KB` : undefined,
+      });
     } catch (err) {
       toast({ title: "Upload failed", description: (err as Error).message, variant: "destructive" });
     } finally {
       setUploading(false);
     }
   };
+
 
   return (
     <div className="space-y-1.5">
