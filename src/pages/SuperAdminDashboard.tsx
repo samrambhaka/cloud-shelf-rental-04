@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import DashboardLayout from "@/components/DashboardLayout";
-import { Globe, MapPin, Percent, BarChart3, Users, Settings, Package, ShoppingCart, Truck, Layers, Loader2, CreditCard, UserCog, IndianRupee } from "lucide-react";
+import { Globe, MapPin, Percent, BarChart3, Users, Settings, Package, ShoppingCart, Truck, Layers, Loader2, CreditCard, UserCog, IndianRupee, Megaphone } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
@@ -16,6 +16,7 @@ import SAOrders from "./superadmin/SAOrders";
 import SAItems from "./superadmin/SAItems";
 import SAPayments from "./superadmin/SAPayments";
 import SAWards from "./superadmin/SAWards";
+import SAPromotions from "./superadmin/SAPromotions";
 
 const pageTitles: Record<string, string> = {
   "/superadmin": "Super Admin Dashboard",
@@ -30,6 +31,7 @@ const pageTitles: Record<string, string> = {
   "/superadmin/orders": "Orders",
   "/superadmin/items": "Items",
   "/superadmin/payments": "Payments & Settlements",
+  "/superadmin/promotions": "Promotions",
   "/superadmin/settings": "Settings",
 };
 
@@ -293,6 +295,7 @@ const SuperAdminDashboard = () => {
     { label: "Items", path: "/superadmin/items", icon: <Package className="h-4 w-4" /> },
     { label: "Payments", path: "/superadmin/payments", icon: <CreditCard className="h-4 w-4" /> },
     { label: "Categories", path: "/superadmin/categories", icon: <Percent className="h-4 w-4" /> },
+    { label: "Promotions", path: "/superadmin/promotions", icon: <Megaphone className="h-4 w-4" /> },
     { label: "Admin Accounts", path: "/superadmin/admins", icon: <Users className="h-4 w-4" /> },
     { label: "Settings", path: "/superadmin/settings", icon: <Settings className="h-4 w-4" /> },
   ];
@@ -318,6 +321,7 @@ const SuperAdminDashboard = () => {
       case "/superadmin/commission": return <SACommission />;
       case "/superadmin/categories": return <SACommission />;
       case "/superadmin/admins": return <SAAdmins />;
+      case "/superadmin/promotions": return <SAPromotions />;
       case "/superadmin/settings": return <SASettings />;
       default: return <DashboardHome />;
     }

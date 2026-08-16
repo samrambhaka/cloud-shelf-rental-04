@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import MarketHeader from "@/components/MarketHeader";
 import Footer from "@/components/Footer";
+import PromoBannerRail from "@/components/PromoBannerRail";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -148,7 +149,9 @@ const BrowseItems = () => {
       </div>
 
       <main className="flex-1 pb-12">
-        <div className="container pt-5">
+        <div className="container pt-5 flex flex-col lg:flex-row gap-4">
+          <PromoBannerRail />
+          <div className="flex-1 min-w-0">
           <div className="flex items-end justify-between mb-4">
             <div>
               <h1 className="text-lg md:text-xl font-display font-semibold text-foreground">Fresh recommendations</h1>
@@ -219,7 +222,9 @@ const BrowseItems = () => {
               })}
             </div>
           )}
+          </div>
         </div>
+
       </main>
       <Footer />
     </div>
