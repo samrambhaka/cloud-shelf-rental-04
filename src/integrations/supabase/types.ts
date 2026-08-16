@@ -542,6 +542,72 @@ export type Database = {
           },
         ]
       }
+      promo_banners: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          ends_at: string | null
+          id: string
+          image_url: string
+          is_active: boolean
+          link_url: string | null
+          sort_order: number
+          starts_at: string | null
+          subtitle: string | null
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          ends_at?: string | null
+          id?: string
+          image_url: string
+          is_active?: boolean
+          link_url?: string | null
+          sort_order?: number
+          starts_at?: string | null
+          subtitle?: string | null
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          ends_at?: string | null
+          id?: string
+          image_url?: string
+          is_active?: boolean
+          link_url?: string | null
+          sort_order?: number
+          starts_at?: string | null
+          subtitle?: string | null
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      promo_config: {
+        Row: {
+          banners_enabled: boolean
+          id: string
+          rotation_seconds: number
+          updated_at: string
+        }
+        Insert: {
+          banners_enabled?: boolean
+          id?: string
+          rotation_seconds?: number
+          updated_at?: string
+        }
+        Update: {
+          banners_enabled?: boolean
+          id?: string
+          rotation_seconds?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       settlements: {
         Row: {
           amount: number
